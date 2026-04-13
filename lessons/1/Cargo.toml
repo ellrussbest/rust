@@ -1,0 +1,8 @@
+[package]
+name = "rusty"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "1"
+path = "main.rs"

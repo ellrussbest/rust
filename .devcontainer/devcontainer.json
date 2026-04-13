@@ -1,0 +1,35 @@
+{
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.vscode-github-actions",
+        "1yib.rust-bundle",
+        "rust-lang.rust-analyzer",
+        "dustypomerleau.rust-syntax"
+      ],
+      "settings": {
+        "files.eol": "\n"
+      }
+    }
+  },
+  "dockerFile": "Dockerfile",
+  "features": {
+    "ghcr.io/devcontainers-extra/features/pnpm": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
+    "ghcr.io/devcontainers/features/github-cli": {},
+    "ghcr.io/devcontainers/features/node": {},
+     "ghcr.io/devcontainers/features/rust": {
+      "version": "latest"
+    }
+  },
+  "mounts": [
+    "source=build-cache,target=/workspaces/rusty/out,type=volume"
+  ],
+  "name": "Rusty",
+  "postCreateCommand": "sudo chown -R $(whoami):$(whoami) ${containerWorkspaceFolder} && bash /usr/local/bin/setup-git.sh",
+  "remoteUser": "dev",
+  "workspaceFolder": "/workspaces/rusty",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/rusty,type=bind,consistency=cached"
+}

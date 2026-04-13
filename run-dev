@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: ./run-dev lesson <number>"
+    exit 1
+fi
+
+COMMAND=$1
+
+# Ensure cargo-watch exists
+if ! command -v cargo-watch &> /dev/null; then
+    echo "cargo-watch not found. Installing..."
+    cargo install cargo-watch
+fi
+
+if [ "$COMMAND" = "lesson" ]; then
+    LESSON_NUM=$2
+    BIN_NAME="${LESSON_NUM}"
+else
+    BIN_NAME=$COMMAND
+fi
+
+cargo watch -q -c -x "run -p rusty --bin $BIN_NAME"
