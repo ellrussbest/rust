@@ -31,4 +31,4 @@ else
 fi
 
 # Run the binary
-cargo run -p rusty --bin "$BIN_NAME"
+cargo run --bin "$BIN_NAME"

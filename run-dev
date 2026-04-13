@@ -20,4 +20,4 @@ else
     BIN_NAME=$COMMAND
 fi
 
-cargo watch -q -c -x "run -p rusty --bin $BIN_NAME"
+cargo watch -q -c -x "run --bin $BIN_NAME"
