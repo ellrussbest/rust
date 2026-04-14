@@ -141,10 +141,10 @@ dependencies = [
 [[package]]
 name = "lesson_3"
 version = "0.1.0"
-dependencies = [
- "colored",
- "rand",
-]
+
+[[package]]
+name = "lesson_4"
+version = "0.1.0"
 
 [[package]]
 name = "libc"

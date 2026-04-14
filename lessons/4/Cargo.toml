@@ -1,9 +1,9 @@
 [package]
-name = "lesson_3"
+name = "lesson_4"
 version.workspace = true
 edition.workspace = true
 
 [[bin]]
-name = "3"
+name = "4"
 path = "main.rs"
 
