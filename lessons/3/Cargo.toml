@@ -1,0 +1,12 @@
+[package]
+name = "lesson_3"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "3"
+path = "main.rs"
+
+[dependencies]
+colored = "3.1.1"
+rand = "0.10.1"

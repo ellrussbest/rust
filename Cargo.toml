@@ -1,6 +1,6 @@
 [workspace]
-members = ["lessons/1", "lessons/2"]
-default-members = ["lessons/1", "lessons/2"]
+members = ["lessons/1", "lessons/2", "lessons/3"]
+default-members = ["lessons/1", "lessons/2", "lessons/3"]
 resolver = "3"
 
 [workspace.package]
