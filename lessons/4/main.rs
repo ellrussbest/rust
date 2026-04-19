@@ -90,5 +90,14 @@ fn main() {
     }
 
     println!("{}", s);
+
+    // 6.
+
+    // YOU CANNOT HAVE A MUTABLE REFERENCE IF A MUTABLE REFERENCE ALREADY EXISTS
+    let mut s = String::from("hello");
+    let r1 = &s;
+    let r2 = &s;
+    // let r3 = &mut s; // illegal
+    println!("{} {}", r1, r2, s)
   }
 }
