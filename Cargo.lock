@@ -147,6 +147,10 @@ name = "lesson_4"
 version = "0.1.0"
 
 [[package]]
+name = "lesson_5"
+version = "0.1.0"
+
+[[package]]
 name = "libc"
 version = "0.2.185"
 source = "registry+https://github.com/rust-lang/crates.io-index"

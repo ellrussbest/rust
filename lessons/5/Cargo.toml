@@ -1,0 +1,9 @@
+[package]
+name = "lesson_5"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "5"
+path = "main.rs"
+

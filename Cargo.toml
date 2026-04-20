@@ -3,13 +3,15 @@ members = [
     "lessons/1",
     "lessons/2",
     "lessons/3",
-    "lessons/4"
+    "lessons/4",
+    "lessons/5"
 ]
 default-members = [
     "lessons/1",
     "lessons/2",
     "lessons/3",
-    "lessons/4"
+    "lessons/4",
+    "lessons/5"
 ]
 resolver = "3"
 
