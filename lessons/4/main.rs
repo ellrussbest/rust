@@ -91,13 +91,56 @@ fn main() {
 
     println!("{}", s);
 
+    // REFERENCES
+    // The rules of References
+    // 1. At any given time, you can have either one mutable reference or any number of immutable references.
+    // 2. References must always be valid.
+
     // 6.
 
-    // YOU CANNOT HAVE A MUTABLE REFERENCE IF A MUTABLE REFERENCE ALREADY EXISTS
+    // YOU CANNOT HAVE A MUTABLE REFERENCE IF AN IMMUTABLE REFERENCE ALREADY EXISTS
     let mut s = String::from("hello");
     let r1 = &s;
     let r2 = &s;
     // let r3 = &mut s; // illegal
-    println!("{} {}", r1, r2, s)
+    println!("{} {}", r1, r2); // with the above illegal, data could be corrupted... we could be reading from stale, or changed data!
+
+    let mut s = String::from("hello");
+    let r1 = &s;
+    let r2 = &s;
+    println!("{} {}", r1, r2);
+    let r3 = &mut s; // allowed
+    println!("{}", r3);
+
+    // 7.
+    // fn dangle() -> &String {
+    //   let s = String::from("hello");
+    //   &s
+    // }
+
+    // String slices
+    let mut s = String::from("hello world");
+    let hello = &s[..5];
+    let world = &s[6..];
+    let hello_world = &s[..];
+    let f_word = first_word(&s);
+    // s.clear(); // illegal
+    println!("the rist word is: {}", f_word);
+
+    fn first_word(s: &String) -> &str {
+      let bytes = s.as_bytes();
+
+      for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+          return &s[..i];
+        }
+      }
+
+      &s[..]
+    }
+
+    // Collection slices
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[0..2];
   }
 }
