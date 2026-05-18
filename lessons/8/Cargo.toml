@@ -1,0 +1,12 @@
+[package]
+name = "lesson_8"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "8"
+path = "main.rs"
+
+[dependencies]
+unicode-segmentation = "1.13.2"
+
