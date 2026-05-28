@@ -3,9 +3,9 @@
     "vscode": {
       "extensions": [
         "github.vscode-github-actions",
-        "1yib.rust-bundle",
         "rust-lang.rust-analyzer",
-        "dustypomerleau.rust-syntax"
+        "dustypomerleau.rust-syntax",
+        "fill-labs.dependi"
       ],
       "settings": {
         "files.eol": "\n"

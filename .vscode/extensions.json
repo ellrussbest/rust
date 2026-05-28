@@ -1,7 +1,8 @@
 {
   "recommendations": [
-    "1yib.rust-bundle",
+    "github.vscode-github-actions",
     "rust-lang.rust-analyzer",
-    "dustypomerleau.rust-syntax"
+    "dustypomerleau.rust-syntax",
+    "fill-labs.dependi"
   ]
 }
