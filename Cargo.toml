@@ -9,7 +9,8 @@ members = [
     "lessons/7",
     "lessons/8",
     "lessons/9",
-    "lessons/10"
+    "lessons/10",
+    "lessons/11"
 ]
 default-members = [
     "lessons/1",
@@ -21,7 +22,8 @@ default-members = [
     "lessons/7",
     "lessons/8",
     "lessons/9",
-    "lessons/10"
+    "lessons/10",
+    "lessons/11"
 ]
 resolver = "3"
 
