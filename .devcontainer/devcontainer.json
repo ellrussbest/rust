@@ -17,7 +17,10 @@
     "ghcr.io/devcontainers-extra/features/pnpm": {
       "version": "latest"
     },
-    "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker": {
+      "moby": false,
+      "version": "latest"
+    },
     "ghcr.io/devcontainers/features/github-cli": {},
     "ghcr.io/devcontainers/features/node": {},
      "ghcr.io/devcontainers/features/rust": {

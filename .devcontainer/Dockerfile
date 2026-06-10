@@ -1,8 +1,8 @@
-FROM nodejs/devcontainer:nightly
+FROM rustlang/rust:nightly
 
 USER root
 
-RUN apt update && apt install -y locales \
+RUN apt update && apt install -y locales sudo \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen
 
@@ -18,12 +18,14 @@ RUN apt update -y && apt install -y \
     curl \
     git \
     libzip-dev \
-    sudo \
     openssh-client \
+    xdg-utils \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./script/setup-git.sh /usr/local/bin/setup-git.sh
+COPY ./script/setup-dev.sh /usr/local/bin/setup-dev.sh
 RUN chmod +x /usr/local/bin/setup-git.sh
+RUN chmod +x /usr/local/bin/setup-dev.sh
 
 USER dev
 WORKDIR /home/dev
