@@ -34,6 +34,14 @@ Example:
 
 ---
 
+### Run a test
+
+```
+cargo test -p <lesson_x> # e.g. cargo test -p lesson_13
+```
+
+---
+
 ### Notes
 
 * Use watch mode while developing.
