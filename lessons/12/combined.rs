@@ -1,6 +1,6 @@
 use std::fmt::Display;
 
-fn longest_with_an_announcement<'a, T>(
+pub fn longest_with_an_announcement<'a, T>(
   x: &'a str,
   y: &'a str,
   ann: T,
@@ -8,7 +8,7 @@ fn longest_with_an_announcement<'a, T>(
 where
   T: Display,
 {
-  println!("Announcmenet! {}", ann);
+  println!("Announcement: {}", ann);
 
   if x.len() > y.len() { x } else { y }
 }

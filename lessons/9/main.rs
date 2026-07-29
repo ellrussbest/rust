@@ -18,7 +18,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
   let f = File::open("hello.txt");
 
-  let f = match f {
+  let _f = match f {
     Err(e) => match e.kind() {
       ErrorKind::NotFound => match File::create("hello.txt") {
         Ok(fc) => fc,
@@ -30,7 +30,7 @@ fn main() -> Result<(), Box<dyn Error>> {
   };
 
   // closure snippet
-  let f = File::open("hello.txt").unwrap_or_else(|error| {
+  let _f = File::open("hello.txt").unwrap_or_else(|error| {
     if error.kind() == ErrorKind::NotFound {
       File::create("hello.txt").unwrap_or_else(|error| {
         panic!("Problem creating the file: {:?}", error);
@@ -46,12 +46,12 @@ fn main() -> Result<(), Box<dyn Error>> {
   //       Ok(file) => file,
   //       Err(e) => panic!("{:?}", e)
   //   };
-  let f = File::open("hello.txt").unwrap();
+  let _f = File::open("hello.txt").unwrap();
 
   // pass a custom error message
-  let f = File::open("hello.txt").expect("Failed to open hello.txt");
+  let _f = File::open("hello.txt").expect("Failed to open hello.txt");
 
-  let f = File::open("hello.txt")?;
+  let _f = File::open("hello.txt")?;
 
   Ok(())
 }

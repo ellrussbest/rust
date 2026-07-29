@@ -1,8 +1,12 @@
+#![allow(dead_code)] // Every enum variant is retained for demonstration.
+#![allow(clippy::useless_vec)] // These examples intentionally teach vectors.
+#![allow(clippy::vec_init_then_push)] // The first example demonstrates `Vec::push`.
+
 use std::collections::HashMap;
 use unicode_segmentation::UnicodeSegmentation;
 
 fn main() {
-  // collection grow on the heap
+  // Vectors store a growable sequence of values on the heap.
   let mut v: Vec<i32> = Vec::new();
   v.push(1);
   v.push(2);
@@ -18,13 +22,13 @@ fn main() {
     None => println!("There is no twentieth element"),
   };
 
+  #[allow(unused_mut)]
+  // `mut` is required by the commented-out `push` example below.
   let mut v = vec![1, 2, 3, 4, 5];
   let third = &v[2];
 
-  // illegal
-  // already borrowed as immutable
-  // cannot have mutable and immutable at same scope
-  // third might have changed... ergo corruption
+  // This would not compile because `third` immutably borrows `v`.
+  // Mutating `v` could reallocate its storage and invalidate that reference.
   //   v.push(6);
   println!("The third element is {}", third);
 
@@ -35,12 +39,12 @@ fn main() {
     println!("{}", i);
   }
 
-  // mutable
+  // Mutate each element through a mutable reference.
   for i in &mut v {
     *i *= 2;
   }
 
-  // storing enum variants
+  // An enum lets a vector store values with different shapes.
   enum SpreadsheetCell {
     Int(i32),
     Float(f64),
@@ -64,15 +68,15 @@ fn main() {
   let s2 = "Initial contents";
   let s3 = s2.to_string();
   let s4 = String::from("initial contents");
-  let s5 = s1 + &s2;
+  let _s5 = s1 + s2;
 
   // illegal...
   // ownership was moved from s1 to s5
   //   println!("{}", s1);
 
-  let s6 = format!("{}{}", s3, s4);
+  let _s6 = format!("{}{}", s3, s4);
 
-  let hello = String::from("नमस्ते");
+  let _hello = String::from("नमस्ते");
 
   // Bytes
   // [224, 164, 168, 224, 164, 174, 224, 164, 184, 224, 165, 141, 224, 164, 164, 224, 165, 135]
@@ -92,7 +96,7 @@ fn main() {
     println!("{}", g);
   }
 
-  // Hashmaps
+  // Hash maps associate keys with values.
   let blue = String::from("Blue");
   let yellow = String::from("yellow");
 
@@ -113,11 +117,11 @@ fn main() {
     println!("{}: {}", key, value);
   }
 
-  // overrides
+  // Inserting an existing key replaces its value.
   scores.insert(String::from("blue"), 10);
   scores.insert(String::from("blue"), 20);
 
-  // doesn't override... creates entry or does nothing!
+  // `entry().or_insert()` inserts only when the key is absent.
   scores.entry(String::from("yellow")).or_insert(30);
   scores.entry(String::from("yellow")).or_insert(40);
 

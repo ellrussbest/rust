@@ -1,3 +1,5 @@
+#![allow(dead_code)] // Some declarations exist solely to demonstrate the lesson concepts.
+
 // if you have main.rs defined in your source directory,
 // then a binary crate with the same name as the package
 // will be automatically created and main.rs will be the crate root
@@ -5,7 +7,7 @@
 // the crate root is the source file that rust compiler starts at when
 // building the crate and it also makes up the root module of the crate!
 
-// CRATE RULES
+// Package and crate rules
 // 1. A package must at least have one crate
 // 2. A package can have 0..1 library crates
 // 3. A package can have any number of binary crates
@@ -18,7 +20,7 @@ fn main() {
   hosting::add_to_waitlist();
   module::super_keyword::how_to_use_super_key_word();
 
-  // RUST IDIOMS:
+  // Rust module idioms:
 
   // Calling items via path makes origin explicit (not local scope confusion):
   // module::function()

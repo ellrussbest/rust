@@ -1,7 +1,5 @@
-// by default a child module and everything inside of it
-// is private until marked public
-
-// on the flip side, child module can see anything within the parent!
+// Child modules and their items are private unless marked `pub`.
+// A child module can access items defined by its parent module.
 
 pub mod front_of_house {
   pub mod hosting {

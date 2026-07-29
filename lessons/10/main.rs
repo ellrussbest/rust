@@ -1,3 +1,5 @@
+#![allow(dead_code)] // Some declarations exist solely to demonstrate the lesson concepts.
+
 #[derive(Debug)]
 struct Point<T> {
   x: T,
@@ -14,7 +16,7 @@ impl<T> Point<T> {
   }
 }
 
-// impl block for only types of float64
+// This specialized implementation is available only for `Point<f64>`.
 impl Point<f64> {
   fn y(&self) -> f64 {
     self.y
@@ -40,15 +42,15 @@ fn main() {
   let largest = get_largest(char_list);
   println!("The largest char is {}", largest);
 
-  let p1 = Point { x: 5, y: 10 };
-  println!("The point is {:?}", p1);
+  let p1 = Point::new(5, 10);
+  println!("The point is {:?}; x = {}", p1, p1.x());
   //   println!("{}", p1.y()); // illegal, method y not available for p1
 
   let p1 = Point { x: 5.5, y: 0.0 };
   println!("{}", p1.y());
 }
 
-// add trait to our type saying that our type T should be Ordeable & Copyable
+// The trait bounds require values to be comparable and copyable.
 fn get_largest<T: PartialOrd + Copy>(lst: Vec<T>) -> T {
   let mut largest = lst[0];
 
@@ -58,5 +60,5 @@ fn get_largest<T: PartialOrd + Copy>(lst: Vec<T>) -> T {
     }
   }
 
-  return largest;
+  largest
 }

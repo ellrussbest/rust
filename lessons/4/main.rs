@@ -1,8 +1,8 @@
 fn main() {
-  // ----- Ownership rules -----
-  // 1. Each value in Rust has a variable that's called its owner.
-  // 2. There can only be one owner at a time.
-  // 3. When the owner goes out of the scope, the value will be dropped.
+  // Ownership rules:
+  // 1. Every value has one owner.
+  // 2. Ownership can move to another binding or function.
+  // 3. A value is dropped when its owner leaves scope.
 
   {
     // s is not valid here, it's not yet declared
@@ -45,8 +45,7 @@ fn main() {
 
     // 3.
     fn gives_ownership() -> String {
-      let s = String::from("hello");
-      s
+      String::from("hello")
     }
     let s = gives_ownership();
     println!("Give {}", s);
@@ -65,7 +64,7 @@ fn main() {
     // 5.
     let s1 = String::from("hello");
     let mut s2 = String::from("hello");
-    fn borrow(s1: &String, s2: &mut String) {
+    fn borrow(s1: &str, s2: &mut String) {
       // s.push_str("oops"); // illegal
       s2.push_str(" world");
       println!("strlen {}", s1.len())
@@ -73,7 +72,7 @@ fn main() {
     borrow(&s1, &mut s2);
     println!("S1 & s2 was just borrowed {} {}", s1, s2);
 
-    // YOU CAN ONLY HAVE ONE MUTABLE REFERENCE TO A VARIABLE IN A SCOPE:
+    // Only one mutable reference may be active at a time.
     // this helps in preventing data races at compile time e.g. a data-race occurs
     // when two pointers point to the same variable and one pointer is used to write to the same data
     // and there's no mechanism to synchronize data access between them
@@ -91,15 +90,14 @@ fn main() {
 
     println!("{}", s);
 
-    // REFERENCES
-    // The rules of References
+    // Borrowing rules
     // 1. At any given time, you can have either one mutable reference or any number of immutable references.
     // 2. References must always be valid.
 
     // 6.
 
-    // YOU CANNOT HAVE A MUTABLE REFERENCE IF AN IMMUTABLE REFERENCE ALREADY EXISTS
-    let mut s = String::from("hello");
+    // A mutable reference cannot overlap active immutable references.
+    let s = String::from("hello");
     let r1 = &s;
     let r2 = &s;
     // let r3 = &mut s; // illegal
@@ -119,15 +117,15 @@ fn main() {
     // }
 
     // String slices
-    let mut s = String::from("hello world");
+    let s = String::from("hello world");
     let hello = &s[..5];
     let world = &s[6..];
     let hello_world = &s[..];
     let f_word = first_word(&s);
     // s.clear(); // illegal
-    println!("the rist word is: {}", f_word);
+    println!("The first word is: {}", f_word);
 
-    fn first_word(s: &String) -> &str {
+    fn first_word(s: &str) -> &str {
       let bytes = s.as_bytes();
 
       for (i, &item) in bytes.iter().enumerate() {
@@ -136,11 +134,13 @@ fn main() {
         }
       }
 
-      &s[..]
+      s
     }
 
     // Collection slices
     let a = [1, 2, 3, 4, 5];
     let slice = &a[0..2];
+    println!("String slices: {hello}, {world}, {hello_world}");
+    println!("Collection slice: {slice:?}");
   }
 }

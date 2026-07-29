@@ -1,17 +1,17 @@
 pub fn main() {
-    a();
+  a();
 }
 
 fn a() {
-    b();
+  b();
 }
 
 fn b() {
-    c(22);
+  c(22);
 }
 
 fn c(num: i32) {
-    if num == 22 {
-        panic!("Dont pass in 22!")
-    }
+  if num == 22 {
+    panic!("Dont pass in 22!")
+  }
 }

@@ -1,3 +1,5 @@
+#![allow(dead_code)] // Some declarations exist solely to demonstrate the lesson concepts.
+
 struct User {
   username: String,
   email: String,
@@ -38,19 +40,19 @@ fn main() {
     username: String::from("John One"),
   };
 
-  let name = user1.username;
+  let _name = user1.username;
   user1.username = String::from("Jane One");
 
   let user2 =
     create_user(String::from("name2@email.com"), String::from("John Two"));
 
-  let user3 = User {
+  let _user3 = User {
     email: String::from("name3@email.com"),
     username: String::from("John Three"),
     ..user2 // Move operation
   };
 
-  // tuple struct
+  // Tuple structs are distinct types even when their fields match.
   struct Color(i32, i32, i32);
   struct Point(i32, i32, i32);
 

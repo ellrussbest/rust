@@ -1,13 +1,14 @@
+#![allow(dead_code)] // Some declarations exist solely to demonstrate the lesson concepts.
+
 /**
- * Life time Elision Rules
+ * Lifetime elision rules
  * 1. Each parameter that is a reference gets its own lifetime parameter
  * 2. If there is exactly one input lifetime parameter, that lifetime
- *    is assigned to all output lifetitime parameters
+ *    is assigned to all output lifetime parameters
  * 3. If there are multiple input lifetime parameters,
  *    but one of them is &self or &mut self the lifetime of the self
- *    is assinged to all ouput lifetime parameters
+ *    is assigned to all output lifetime parameters
  */
-
 mod combined;
 
 struct ImportantExcerpt<'a> {
@@ -22,7 +23,7 @@ impl<'a> ImportantExcerpt<'a> {
 }
 
 fn main() {
-  // dangling references
+  // A reference cannot outlive the value it borrows.
 
   // let r;                  // ---------+-- 'a
   //                         //          |
@@ -33,7 +34,7 @@ fn main() {
   //                         //          |
   // println!("r: {}", r);   // ----------+
 
-  // Correct referencing
+  // Valid reference: the borrowed value outlives the reference.
   // let x = 5;                 // ----------+-- 'b
   //                            //           |
   // let r = &x;                // --+-- 'a  |
@@ -48,14 +49,14 @@ fn main() {
   let res = longest(string1.as_str(), string2.as_str());
   println!("The longest string is {}", res);
 
-  // also correct
+  // This is also valid because the result is used inside the inner scope.
   {
     let string2 = String::from("xyz");
     let res = longest(string1.as_str(), string2.as_str());
     println!("The longest string is {}", res);
   }
 
-  // INCORRECT
+  // This would not compile because `string2` would be dropped too early.
   // let res;
 
   // {
@@ -70,9 +71,11 @@ fn main() {
 
   let novel = String::from("Call me Ishmael. Some years ago...");
   let first_sentence = novel.split('.').next().expect("Could not find");
-  let i = ImportantExcerpt {
+  let excerpt = ImportantExcerpt {
     part: first_sentence,
   };
+
+  println!("Excerpt: {}", excerpt.return_part("lifetimes matter"));
 
   // let res;
   // {
@@ -90,7 +93,13 @@ fn main() {
   // Static lifetimes can live for as long as the duration of the program
   // all string literals have a static lifetime because string literals are stored in the program's
   // binary
-  let s: &'static str = "I have a static lifetime.";
+  let static_message: &'static str = "I have a static lifetime.";
+  println!("{static_message}");
+
+  println!(
+    "Combined bounds: {}",
+    combined::longest_with_an_announcement("long", "short", "comparing")
+  );
 }
 
 // &i32         // a reference
@@ -98,7 +107,7 @@ fn main() {
 // &'a mut i32  // a mutable reference with an explicit lifetime
 // borrow checker wouldn't know how to handle the lifetimes of x and y
 
-// Generic lifetime annotations dont actually change the lifetime
+// Generic lifetime annotations do not change how long a value lives.
 // they just create relationships between the lifetimes of multiple
 // references e.g. from the below example, there's a relationship between
 // x, y, and the return value e.g. the lifetime of the return reference,

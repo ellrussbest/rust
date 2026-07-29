@@ -23,13 +23,13 @@ pub fn eat_at_restaurant() {
   let mut meal = back_of_house::Breakfast::summer("Rye");
   meal.toast = String::from("Wheat");
 
-  // cannot create breakfast struct directly beacuse it has one private field
-  // illegal
+  // cannot create breakfast struct directly because it has one private field
+  // This would not compile:
   //   const bf = back_of_house::Breakfast {
   //     toast: String::from("Wheat"),
   //     seasonal_fruit: String::from("peaches")
   //   };
 
-  // Enum options are automitacally public when the enum is public
-  let appetizer: back_of_house::Appetizer = back_of_house::Appetizer::Salad;
+  // Enum options are automatically public when the enum is public
+  let _appetizer: back_of_house::Appetizer = back_of_house::Appetizer::Salad;
 }

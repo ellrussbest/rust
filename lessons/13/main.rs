@@ -1,3 +1,5 @@
+#![allow(dead_code)] // Some declarations exist solely to demonstrate the lesson concepts.
+
 #[derive(Debug)]
 struct Rectangle {
   width: u32,
@@ -10,14 +12,14 @@ pub struct Guess {
 
 impl Guess {
   pub fn new(value: i32) -> Guess {
-    if value < 1 || value > 100 {
+    if !(1..=100).contains(&value) {
       panic!("Guess value must be between 1 and 100, got {}", value)
     }
 
     Self { value }
   }
 
-  pub fn new2(value: i32) -> Guess {
+  pub fn new_with_specific_errors(value: i32) -> Guess {
     if value < 1 {
       panic!(
         "Guess value must be greater than or equal to 1, got {}",
@@ -46,6 +48,11 @@ pub fn add_two(a: i32) -> i32 {
 
 pub fn greeting(name: &str) -> String {
   format!("Hello {}!", name)
+}
+
+fn main() {
+  let guess = Guess::new(50);
+  println!("Valid guess: {}", guess.value);
 }
 
 #[cfg(test)]
@@ -106,8 +113,8 @@ mod tests {
 
   #[test]
   #[should_panic(expected = "Guess value must be less than or equal to 100")]
-  fn greater_than_100_2() {
-    Guess::new2(200);
+  fn greater_than_100_with_specific_message() {
+    Guess::new_with_specific_errors(200);
   }
 
   #[test]
@@ -120,11 +127,8 @@ mod tests {
   }
 
   #[test]
-  fn failing_test() {
-    panic!("Make this test fails");
+  #[ignore = "demonstrates how a failing test is reported"]
+  fn intentionally_failing_test() {
+    panic!("This test fails intentionally");
   }
-}
-
-fn main() {
-  println!("Lesson 13");
 }

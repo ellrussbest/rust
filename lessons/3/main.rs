@@ -2,30 +2,25 @@ fn main() {
   let x = 5;
   println!("The value of x is: {}", x);
 
-  // cannot re-assign: values immutable by default
+  // Values are immutable by default.
   // x = 6;
   // println!("The value of x is: {}", x);
 
-  // MUTATION & SHADOWING:
-  // make values mutable by:
+  // Mutability allows a value to be reassigned.
   let mut x = 5;
   println!("The value of x is: {}", x);
-  // can re-assign: values marked as mutable
   x = 6;
   println!("The value of x is: {}", x);
 
-  // CONST
-  // constant values: Can never be modified
-  // consts should always be type-annotated
-  // can never be set to any computed values at runtime
+  // Constants are immutable, require a type, and use constant expressions.
   const MY_CONST: u32 = 10;
   println!("My Const is {}", MY_CONST);
 
-  // DATATYPES
+  // Data types
   {
-    // SCALAR: Single Values
+    // Scalar types represent single values.
     // Integers (i8...i128, isize(arch/architecture), u8...u128, usize(arch/architecture))
-    let a: i32 = 98_2222; // Decimal
+    let a: i32 = 982_222; // Decimal
     let b: i32 = 0xff; // Hex
     let c: i32 = 0o77; // Octal
     let d: i32 = 0b1111_0000; // Binary
@@ -45,7 +40,7 @@ fn main() {
     let emoji = '😀';
     println!("{}, {}, {}", a, b, emoji);
 
-    // COMPOUND: Group of values
+    // Compound types group multiple values.
     // 1. TUPLE: fixed size array of related data of different types
     let tup = ("John Doe", 50);
 
@@ -73,14 +68,14 @@ fn main() {
   } else if num < 22 {
     println!("second condition was true");
   } else {
-    println!("condition was flase");
+    println!("No condition was true");
   }
 
   let condition = true;
   let num = if condition { 5 } else { 6 };
   println!("{}", num);
 
-  // Loop:
+  // A loop can return a value through `break`.
   let mut count = 0;
   let res = loop {
     if count == 10 {

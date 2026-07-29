@@ -1,4 +1,6 @@
-// shared behavior using traits
+#![allow(dead_code)] // Some declarations exist solely to demonstrate the lesson concepts.
+
+// Traits define behavior that multiple types can share.
 
 // assume we have a program which aggregates different types of text content
 // in this case, a news article and a tweet
@@ -38,7 +40,7 @@ impl Summary for Tweet {
 pub trait Summary {
   fn summarize(&self) -> String;
 
-  // trait with default implementation
+  // Traits can provide default method implementations.
   fn default(&self) -> String {
     String::from("Read more...")
   }
@@ -56,22 +58,22 @@ pub fn notify(item: &impl Summary) {
 // }
 
 // takes an argument that implements both summary and display
-pub fn notifyItemsWMultipleTraits(item: &(impl Summary + Display)) {}
+pub fn notify_items_with_multiple_traits(_item: &(impl Summary + Display)) {}
 
 // pub fn notify<T: Summary>(item1: &T, items2: &T) {
 
 // }
 
 // takes an argument that implements both summary and display
-// pub fn notifyItemsWMultipleTraits<T: Summary + Display>(item: T) {}
+// pub fn notify_items_with_multiple_traits<T: Summary + Display>(item: T) {}
 
-// where clause
-fn some_function<T, U>(t: &T, u: &U) -> i32
+// A `where` clause keeps multiple trait bounds readable.
+fn some_function<T, U>(_t: &T, _u: &U) -> i32
 where
   T: Display + Clone,
   U: Clone + Debug,
 {
-  return 0;
+  0
 }
 
 fn returns_summarizable() -> impl Summary {
@@ -124,8 +126,7 @@ impl<T: Display + PartialOrd> Pair<T> {
   }
 }
 
-// blanket implementations
-// implement a trait on a type that has another trait
+// A blanket implementation applies a trait to every type matching a bound.
 pub trait MyCustomToString {
   fn to_custom_string(&self) -> String;
 }

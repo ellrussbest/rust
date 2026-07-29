@@ -1,3 +1,8 @@
+#![allow(dead_code)] // Some declarations exist solely to demonstrate the lesson concepts.
+#![allow(clippy::manual_map)] // `plus_one` demonstrates exhaustive `Option` matching.
+#![allow(clippy::single_match)] // The final example intentionally compares `match` with `if let`.
+#![allow(clippy::unnecessary_literal_unwrap)] // Demonstrates `Option::unwrap_or`.
+
 #[derive(Debug)]
 enum IpAddrKind {
   V4,
@@ -47,7 +52,7 @@ struct IpAddrWithStorage {
   address: IpAddrKindWithStorage,
 }
 
-// handle enum via pattern matching
+// Handle every enum variant with exhaustive pattern matching.
 fn route(ip_kind: IpAddrKind) {
   match ip_kind {
     IpAddrKind::V4 => println!("Version V4"),
@@ -55,7 +60,7 @@ fn route(ip_kind: IpAddrKind) {
   }
 }
 
-// match with data extraction
+// Extract data stored inside an enum variant.
 fn value_in_cents(coin: Coin) -> u8 {
   match coin {
     Coin::Penny => 1,
@@ -71,8 +76,8 @@ fn value_in_cents(coin: Coin) -> u8 {
 // Option handling
 fn plus_one(x: Option<i32>) -> Option<i32> {
   match x {
+    Some(value) => Some(value + 1),
     None => None,
-    Some(i) => Some(i + 1),
   }
 }
 
@@ -82,13 +87,13 @@ fn main() {
   let v6 = IpAddrKind::V6;
 
   // struct using enum + string
-  let localhost_struct = IpAddr {
+  let _localhost_struct = IpAddr {
     address: String::from("127.0.0.1"),
     kind: v4,
   };
 
   // enum with data instead of struct
-  let localhost_enum = IpAddrWithStorage {
+  let _localhost_enum = IpAddrWithStorage {
     address: IpAddrKindWithStorage::V4(127, 0, 0, 1),
   };
 
@@ -97,20 +102,20 @@ fn main() {
   msg.some_fn();
 
   // Option examples
-  let some_number = Some(5);
-  let some_string = Some("a string");
-  let absent_number: Option<i32> = None;
+  let _some_number = Some(5);
+  let _some_string = Some("a string");
+  let _absent_number: Option<i32> = None;
 
   // combining Option with values
   let x: i8 = 5;
-  let y: Option<i8> = Some(5);
+  let y: Option<i8> = Some(x);
 
-  let sum_match = match y {
+  let _sum_match = match y {
     Some(val) => val + x,
     None => x,
   };
 
-  let sum_unwrap = x + y.unwrap_or(0);
+  let _sum_unwrap = x + y.unwrap_or(0);
 
   // function usage
   route(v6);
@@ -119,14 +124,14 @@ fn main() {
 
   // Option transformation
   let five = Some(5);
-  let six = plus_one(five);
-  let none = plus_one(None);
+  let _six = plus_one(five);
+  let _none = plus_one(None);
 
   // match vs if let
   let some_val = Some(3);
 
   match some_val {
-    Some(3) => println!("three"),
+    Some(3) => println!("three from match"),
     _ => (),
   }
 
