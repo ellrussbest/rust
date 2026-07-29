@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-    echo "Usage: ./run-dev lesson <number>"
+    echo "Usage: ./run-dev <lesson|ds|alg> <number>"
     exit 1
 fi
 
@@ -13,11 +13,17 @@ if ! command -v cargo-watch &> /dev/null; then
     cargo install cargo-watch
 fi
 
-if [ "$COMMAND" = "lesson" ]; then
-    LESSON_NUM=$2
-    BIN_NAME="${LESSON_NUM}"
-else
-    BIN_NAME=$COMMAND
-fi
+case "$COMMAND" in
+    lesson|ds|alg)
+        if [ -z "$2" ]; then
+            echo "Usage: ./run-dev $COMMAND <number>"
+            exit 1
+        fi
 
-cargo watch -q -c -x "run --bin $BIN_NAME"
+        cargo watch -q -c -x "run -p ${COMMAND}_$2"
+        ;;
+    *)
+        # Preserve support for watching a globally unique binary directly.
+        cargo watch -q -c -x "run --bin $COMMAND"
+        ;;
+esac

@@ -1,49 +1,48 @@
 ## Let’s Get Rusty
 
-This project is organized into lessons. You can run each lesson in either watch mode or as a one-time execution.
+This project is organized into Rust lessons, data structures, algorithms, and coding challenges.
 
-### Run a Lesson in Watch Mode
+### Project Tracks
 
-Rebuilds and reruns the lesson automatically when files change.
+| Directory | Purpose |
+| --- | --- |
+| `lessons/` | Rust language concepts |
+| `ds/` | Data structures and their implementations |
+| `alg/` | Algorithms and efficient use of data structures |
+| `challenges/` | Practice problems from platforms such as LeetCode |
 
-```bash
-./run-dev lesson <lesson-number>
-```
+### Run a Topic
 
-Example:
-
-```bash
-./run-dev lesson 1
-```
-
----
-
-### Run a Lesson Once
-
-Runs the lesson a single time.
+Run a topic once:
 
 ```bash
-./run lesson <lesson-number>
+./run <track> <number>
 ```
 
-Example:
+Run it in watch mode:
+
+```bash
+./run-dev <track> <number>
+```
+
+Examples:
 
 ```bash
 ./run lesson 1
+./run ds 1
+./run alg 1
 ```
 
----
+### Run Tests
 
-### Run a test
-
+```bash
+cargo test -p lesson_13
+cargo test -p ds_1
+cargo test -p alg_1
 ```
-cargo test -p <lesson_x> # e.g. cargo test -p lesson_13
-```
-
----
 
 ### Notes
 
-* Use watch mode while developing.
-* Use one-time run to quickly check output.
-* Replace `<lesson-number>` with the lesson you want to run.
+- Valid executable tracks are `lesson`, `ds`, and `alg`.
+- Each numbered directory has a short README describing its concepts.
+- Challenge directories are organized by platform and challenge number.

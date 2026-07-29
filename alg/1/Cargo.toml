@@ -1,0 +1,4 @@
+[package]
+name = "alg_1"
+version.workspace = true
+edition.workspace = true

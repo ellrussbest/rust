@@ -3,6 +3,10 @@
 version = 4
 
 [[package]]
+name = "alg_1"
+version = "0.1.0"
+
+[[package]]
 name = "anyhow"
 version = "1.0.102"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -48,6 +52,10 @@ checksum = "8b2a41393f66f16b0823bb79094d54ac5fbd34ab292ddafb9a0456ac9f87d201"
 dependencies = [
  "libc",
 ]
+
+[[package]]
+name = "ds_1"
+version = "0.1.0"
 
 [[package]]
 name = "equivalent"
