@@ -23,9 +23,7 @@ RUN apt update -y && apt install -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./script/setup-git.sh /usr/local/bin/setup-git.sh
-COPY ./script/setup-dev.sh /usr/local/bin/setup-dev.sh
 RUN chmod +x /usr/local/bin/setup-git.sh
-RUN chmod +x /usr/local/bin/setup-dev.sh
 
 USER dev
 WORKDIR /home/dev
